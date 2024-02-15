@@ -15,6 +15,10 @@ public class Vacancy {
 
     private LocalDateTime creationDate;
 
+    public Vacancy() {
+        this.creationDate = LocalDateTime.now();
+    }
+
     public Vacancy(int id, String title, String description, LocalDateTime creationDate) {
         this.id = id;
         this.title = title;
@@ -48,10 +52,6 @@ public class Vacancy {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
-    }
-
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
     }
 
     @Override
