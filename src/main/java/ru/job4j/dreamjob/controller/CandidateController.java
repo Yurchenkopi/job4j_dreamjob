@@ -4,15 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.model.Vacancy;
 import ru.job4j.dreamjob.repository.CandidateRepository;
-import ru.job4j.dreamjob.repository.MemoryCandidateRepository;
 
 @Controller
 @RequestMapping("/candidates")
 public class CandidateController {
 
-    private final CandidateRepository candidateRepository = MemoryCandidateRepository.getInstance();
+    private final CandidateRepository candidateRepository;
+
+    public CandidateController(CandidateRepository candidateRepository) {
+        this.candidateRepository = candidateRepository;
+    }
 
     @GetMapping
     public String getAll(Model model) {
