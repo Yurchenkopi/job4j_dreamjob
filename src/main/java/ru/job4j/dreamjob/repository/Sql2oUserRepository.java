@@ -32,7 +32,7 @@ public class Sql2oUserRepository implements UserRepository {
                     .addParameter("password", user.getPassword());
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
-            rsl = Optional.ofNullable(user);
+            rsl = Optional.of(user);
         } catch (Exception e) {
             LOG.error("Email have been already taking by another user", e);
         }

@@ -52,7 +52,7 @@ public class Sql2oUserRepositoryTest {
     @AfterEach
     public void clearUsers() {
         try (var connection = sql2o.open()) {
-            var query = connection.createQuery("DELETE FROM users WHERE id >= 0");
+            var query = connection.createQuery("DELETE FROM users WHERE id > 0");
             query.executeUpdate();
         }
     }
