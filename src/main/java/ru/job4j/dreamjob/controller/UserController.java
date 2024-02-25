@@ -24,6 +24,11 @@ public class UserController {
         return "users/register";
     }
 
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "users/login";
+    }
+
     @PostMapping("/register")
     public String register(@ModelAttribute User user, Model model) {
         var newUser = userService.save(user);
@@ -31,6 +36,16 @@ public class UserController {
             model.addAttribute("message", "Пользователь с таким email уже зарегистрирован");
             return "errors/404";
         }
-        return "index";
+        return "redirect:/vacancies";
+    }
+
+    @PostMapping("/login")
+    public String loginUser(@ModelAttribute User user, Model model) {
+        var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+        if (userOptional.isEmpty()) {
+            model.addAttribute("error", "Почта или пароль введены неверно");
+            return "users/login";
+        }
+        return "redirect:/vacancies";
     }
 }
