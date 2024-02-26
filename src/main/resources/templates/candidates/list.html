@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link th:href = "@{/css/bootstrap.min.css}" rel="stylesheet">
-    <script th:src="@{/js/code.jquery.com_jquery-3.7.0.min.js}"></script>
     <script th:src="@{/umd/popper.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
 
@@ -30,7 +29,7 @@
                 <tr th:each="candidate: ${candidates}">
                     <td th:text="${candidate.id}" />
                     <td><a th:text="${candidate.name}" th:href="@{/candidates/{candidateId}(candidateId=${candidate.id})}"></a></td>
-                    <td th:text="${#temporals.format(candidate.creationDate, 'yyyy-MM-dd')}" />
+                    <td th:text="${#temporals.format(candidate.creationDate, 'yyyy-MM-dd HH:mm')}" />
                 </tr>
                 </tbody>
             </table>

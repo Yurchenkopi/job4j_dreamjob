@@ -1,11 +1,20 @@
 package ru.job4j.dreamjob.model;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Formatter;
+import java.util.Map;
 import java.util.Objects;
 
 public class Vacancy {
+
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "title", "title",
+            "description", "description",
+            "creation_date", "creationDate",
+            "visible", "visible",
+            "city_id", "cityId",
+            "file_id", "fileId"
+    );
 
     private int id;
 
@@ -24,8 +33,10 @@ public class Vacancy {
     public Vacancy() {
     }
 
-    public Vacancy(int id, String title, String description, LocalDateTime creationDate,
-                   boolean visible, int cityId, int fileId) {
+    public Vacancy(
+            int id, String title, String description, LocalDateTime creationDate,
+                   boolean visible, int cityId, int fileId
+    ) {
         this.id = id;
         this.title = title;
         this.description = description;
