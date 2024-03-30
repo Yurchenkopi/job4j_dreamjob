@@ -1,12 +1,10 @@
 package ru.job4j.dreamjob.repository;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.dreamjob.configuration.DatasourceConfiguration;
-import ru.job4j.dreamjob.model.File;
 import ru.job4j.dreamjob.model.User;
 
 import java.util.Properties;
@@ -18,10 +16,6 @@ public class Sql2oUserRepositoryTest {
     private static Sql2o sql2o;
 
     private static Sql2oUserRepository sql2oUserRepository;
-
-    private static Sql2oFileRepository sql2oFileRepository;
-
-    private static File file;
 
     @BeforeAll
     public static void initRepositories() throws Exception {
@@ -38,15 +32,7 @@ public class Sql2oUserRepositoryTest {
         sql2o = configuration.databaseClient(datasource);
 
         sql2oUserRepository = new Sql2oUserRepository(sql2o);
-        sql2oFileRepository = new Sql2oFileRepository(sql2o);
 
-        file = new File("test", "test");
-        sql2oFileRepository.save(file);
-    }
-
-    @AfterAll
-    public static void deleteFile() {
-        sql2oFileRepository.deleteById(file.getId());
     }
 
     @AfterEach
